@@ -1,0 +1,26 @@
+# render.yaml
+services:
+  - type: web
+    name: disease-dashboard
+    env: node
+    region: oregon # or your preferred region
+    plan: free # or "starter" for production
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_HOST
+        value: 102.210.149.248
+      - key: DB_USER
+        value: laraveluser
+      - key: DB_PASSWORD
+        value: Ferroh@2024
+      - key: DB_NAME
+        value: laravel
+      - key: DB_PORT
+        value: 3306 # Default MySQL port
+    healthCheckPath: /api/health
+
+# Since you're using an external MySQL database, you don't need the databases section
+# Remove this if you're not using Render's managed database
